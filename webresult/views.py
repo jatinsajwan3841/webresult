@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 
 def index(request):
-    params = {'name': 'first django proj'}
+    params = {'name': 'first django project'}
     return render(request, 'index.html', params)
 
 def about(request):
