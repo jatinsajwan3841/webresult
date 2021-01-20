@@ -4,8 +4,7 @@ from prettytable import PrettyTable
 
 x = PrettyTable()
 letter = 'a'
-xval = []
-yval = []
+
 
 
 class result:
@@ -16,6 +15,8 @@ class result:
         self.name = name.lower()
         self.clg_id = clgid
         self.branch=branch
+        self.xval = []
+        self.yval = []
 
 
     def select(self, sem):
@@ -25,17 +26,17 @@ class result:
         while True:
 
             if self.sem == 1:
-                self.semn = load_workbook('dat/B. TECH. I SEM DEC 18.xlsx', data_only=True)
+                self.semn = load_workbook('dat\\B. TECH. I SEM DEC 18.xlsx', data_only=True)
                 self.head = 1
                 self.body = 4
                 self.currentSheet = self.semn[self.branch]
             elif self.sem == 2:
-                self.semn = load_workbook('dat/B. TECH. II SEM JUNE 2019.xlsx', data_only=True)
+                self.semn = load_workbook('dat\\B. TECH. II SEM JUNE 2019.xlsx', data_only=True)
                 self.head = 7
                 self.body = 10
                 self.currentSheet = self.semn[self.branch]
             elif self.sem == 3:
-                self.semn = load_workbook('dat/B. TECH. III SEM DECEMBER 2019.xlsx', data_only=True)
+                self.semn = load_workbook('dat\\B. TECH. III SEM DECEMBER 2019.xlsx', data_only=True)
                 self.head = 13
                 self.body = 16
                 self.currentSheet = self.semn[self.branch]
@@ -66,9 +67,9 @@ class result:
                         column -= 1
                         row += 2
                         x.field_names = ["sem", "total marks", "percentage"]
-                        yval.append(self.currentSheet.cell(letter, column).value / self.currentSheet.cell(row,
+                        self.yval.append(self.currentSheet.cell(letter, column).value / self.currentSheet.cell(row,
                                                                                                           column).value * 100)
-                        xval.append(self.sem)
+                        self.xval.append(self.sem)
                         x.add_row([self.sem, "{}/{}".format(self.currentSheet.cell(letter, column).value,
                                                             self.currentSheet.cell(row, column).value), "{} %".format(
                             self.currentSheet.cell(letter, column).value / self.currentSheet.cell(row,
@@ -88,9 +89,12 @@ class result:
 
     def display(self, v):
         if v == 'x':
-            return xval
+            return self.xval
         elif v == 'y':
-            return yval
+            return self.yval
         elif v == 't':
             return x.get_html_string()
-
+    def clear(self):
+        x.clear()
+        self.xval.clear
+        self.yval.clear
