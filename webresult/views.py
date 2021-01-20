@@ -16,6 +16,7 @@ def about(request):
     s.select(1)
     s.select(2)
     s.select(3)
-    
     args = {'table' : s.display('t'), 'name' : name, 'sems' : s.display('x'), 'perc' : s.display('y')}
+    s.clear()
     return render(request, 'output.html',args)
+    
