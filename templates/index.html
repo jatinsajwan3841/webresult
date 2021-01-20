@@ -1,13 +1,51 @@
-<!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<body bgcolor="teal">
-    <h3>hello</h3>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>consise result!</title>
+  </head>
+  <body background="https://mdbootstrap.com/img/Photos/Others/img%20(42).jpg">
+    <div class="container">
+
+        <h3>hello</h3>
     <p>this is my {{ name}}</p>
 
-    <form name="res" method="GET" action="/about">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="clgid" placeholder="college id">
-    <input type="text" name="branch" placeholder="branch">
-    <input type="submit" value="submit">
-    </form>
-</body>
+
+    <form class="row g-3" method="GET" action="/about">
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="name" placeholder="name">
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="clgid" placeholder="college id">
+        </div>
+        
+        
+        <div class="col-md-4">
+          <label for="branch" class="form-label">branch</label>
+          <select id="branch" name = "branch" class="form-select">
+            <option selected>Choose...</option>
+            <option>C S</option>
+            <option>EC</option>
+            <option>EE</option>
+            <option>CE</option>
+            <option>ME</option>
+            <option>BT</option>
+          </select>
+        </div>
+        
+        
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+                
+      </div>
+    
+  </body>
+</html>
