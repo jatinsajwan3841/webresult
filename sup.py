@@ -25,17 +25,17 @@ class result:
         while True:
 
             if self.sem == 1:
-                self.semn = load_workbook('dat\\B. TECH. I SEM DEC 18.xlsx', data_only=True)
+                self.semn = load_workbook('dat/B. TECH. I SEM DEC 18.xlsx', data_only=True)
                 self.head = 1
                 self.body = 4
                 self.currentSheet = self.semn[self.branch]
             elif self.sem == 2:
-                self.semn = load_workbook('dat\\B. TECH. II SEM JUNE 2019.xlsx', data_only=True)
+                self.semn = load_workbook('dat/B. TECH. II SEM JUNE 2019.xlsx', data_only=True)
                 self.head = 7
                 self.body = 10
                 self.currentSheet = self.semn[self.branch]
             elif self.sem == 3:
-                self.semn = load_workbook('dat\\B. TECH. III SEM DECEMBER 2019.xlsx', data_only=True)
+                self.semn = load_workbook('dat/B. TECH. III SEM DECEMBER 2019.xlsx', data_only=True)
                 self.head = 13
                 self.body = 16
                 self.currentSheet = self.semn[self.branch]
