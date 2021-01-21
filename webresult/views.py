@@ -1,10 +1,10 @@
 # views file, let's see
 
-from django.shortcuts import render 
+from django.shortcuts import render
 
 
 def index(request):
-    params = {'name': 'first django project'}
+    params = {'f': '<p>this is my first django project</p>'}
     return render(request, 'index.html', params)
 
 def about(request):
@@ -16,7 +16,11 @@ def about(request):
     s.select(1)
     s.select(2)
     s.select(3)
-    args = {'table' : s.display('t'), 'name' : name, 'sems' : s.display('x'), 'perc' : s.display('y')}
-    s.clear()
-    return render(request, 'output.html',args)
+    if s.display('check') == 'a':
+        params = {'f' : '''<p style="color:red";>The entered data didn't matched, please try again</p>'''}
+        return render(request, 'index.html', params)
+    else:
+        args = {'table' : s.display('t'), 'name' : name, 'sems' : s.display('x'), 'perc' : s.display('y')}
+        s.clear()
+        return render(request, 'output.html',args)
     
