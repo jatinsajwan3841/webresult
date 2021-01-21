@@ -3,9 +3,6 @@ from openpyxl import Workbook
 from prettytable import PrettyTable
 
 x = PrettyTable()
-letter = 'a'
-
-
 
 class result:
     def __init__(self,name,clgid,branch):
@@ -13,10 +10,12 @@ class result:
         self.sheet = self.wb.active
         self.name = name
         self.name = name.lower()
-        self.clg_id = clgid
+        self.clg_id = int(clgid)
         self.branch=branch
         self.xval = []
         self.yval = []
+        self.letter = 'a'
+        
 
 
     def select(self, sem):
@@ -27,18 +26,12 @@ class result:
 
             if self.sem == 1:
                 self.semn = load_workbook('dat/B. TECH. I SEM DEC 18.xlsx', data_only=True)
-                self.head = 1
-                self.body = 4
                 self.currentSheet = self.semn[self.branch]
             elif self.sem == 2:
                 self.semn = load_workbook('dat/B. TECH. II SEM JUNE 2019.xlsx', data_only=True)
-                self.head = 7
-                self.body = 10
                 self.currentSheet = self.semn[self.branch]
             elif self.sem == 3:
                 self.semn = load_workbook('dat/B. TECH. III SEM DECEMBER 2019.xlsx', data_only=True)
-                self.head = 13
-                self.body = 16
                 self.currentSheet = self.semn[self.branch]
 
             for row in range(1, self.currentSheet.max_row + 1):         #searching name or ID
@@ -49,11 +42,10 @@ class result:
                         ex = ex.strip()
                         ex = ex.lower()
                     if ex == self.clg_id or ex == self.name:
-                        global letter
-                        letter = row
+                        self.letter = row
                         break
-
-            if letter == 'a':
+                    
+            if self.letter == 'a':
                 print('Either you are LE, wrna bahut galat input maara tune')
                 break
 
@@ -67,25 +59,15 @@ class result:
                         column -= 1
                         row += 2
                         x.field_names = ["sem", "total marks", "percentage"]
-                        self.yval.append(self.currentSheet.cell(letter, column).value / self.currentSheet.cell(row,
+                        self.yval.append(self.currentSheet.cell(self.letter, column).value / self.currentSheet.cell(row,
                                                                                                           column).value * 100)
                         self.xval.append(self.sem)
-                        x.add_row([self.sem, "{}/{}".format(self.currentSheet.cell(letter, column).value,
+                        x.add_row([self.sem, "{}/{}".format(self.currentSheet.cell(self.letter, column).value,
                                                             self.currentSheet.cell(row, column).value), "{} %".format(
-                            self.currentSheet.cell(letter, column).value / self.currentSheet.cell(row,
+                            self.currentSheet.cell(self.letter, column).value / self.currentSheet.cell(row,
                                                                                                   column).value * 100)])
                         break
-
-            for row in range(4, 7):                                      #saving values to excel file
-                for column in range(1, self.currentSheet.max_column + 1):
-                    self.sheet.cell(self.head, column).value = self.currentSheet.cell(row, column).value
-                self.head += 1
-
-            for column in range(1, self.currentSheet.max_column + 1):
-                self.sheet.cell(self.body, column).value = self.currentSheet.cell(letter, column).value
-
-            #self.wb.save("result.xlsx")
-            break
+            break    
 
     def display(self, v):
         if v == 'x':
@@ -94,6 +76,9 @@ class result:
             return self.yval
         elif v == 't':
             return x.get_html_string()
+        elif v == 'check':
+            return self.letter
+            
     def clear(self):
         x.clear()
         self.xval.clear
