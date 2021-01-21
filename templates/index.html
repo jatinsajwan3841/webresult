@@ -21,13 +21,12 @@
     <form class="row g-3" method="GET" action="/about" name="in" onsubmit="return validateForm()">
         <div class="col-md-6">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" name="name" minlength="3" maxlength="40" placeholder="full name please">
+          <input type="text" class="form-control" name="name" id="name" minlength="3" maxlength="40" placeholder="full name please">
         </div>
         <div class="col-md-6">
           <label for="clgid" class="form-label">College ID</label>
-          <input type="number" class="form-control" name="clgid" min="180000" max="999999" placeholder="college id">
+          <input type="number" class="form-control" name="clgid" id="clgid" min="180000" max="999999" placeholder="college id" required>
         </div>
-        
         
         <div class="col-md-4">
           <label for="branch" class="form-label">Branch</label>
@@ -53,10 +52,10 @@
       <script>
         function validateForm() {
           var x = document.getElementById("branch").value;
-          if (x == "Choose...") {
+          if (x == "Choose..."){
             document.getElementById('err').innerHTML = "Please choose correct branch!";
             return false;
-          }
+          }          
         }
         </script>
   </body>
