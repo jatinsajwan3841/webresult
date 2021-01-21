@@ -16,6 +16,7 @@ class result:
         self.xval = []
         self.yval = []
         self.letter = 'a'
+        self.total_marks = [0,0]
         
 
 
@@ -67,6 +68,8 @@ class result:
                                                             self.currentSheet.cell(row, column).value), "{} %".format(
                             self.currentSheet.cell(self.letter, column).value / self.currentSheet.cell(row,
                                                                                                   column).value * 100)])
+                        self.total_marks[0] = self.total_marks[0] + self.currentSheet.cell(self.letter, column).value
+                        self.total_marks[1] = self.total_marks[1] + self.currentSheet.cell(row, column).value   
                         break
             break    
 
@@ -76,6 +79,7 @@ class result:
         elif v == 'y':
             return self.yval
         elif v == 't':
+            x.add_row(["Total :","{}/{}".format(self.total_marks[0],self.total_marks[1]),"{} %".format((self.total_marks[0]/self.total_marks[1])*100)])
             return x.get_html_string(attributes={"name":"restable", "class":"table table-striped table-bordered table-hover"})
         elif v == 'check':
             return self.letter
