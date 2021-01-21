@@ -3,6 +3,7 @@ from openpyxl import Workbook
 from prettytable import PrettyTable
 
 x = PrettyTable()
+x.format = True
 
 class result:
     def __init__(self,name,clgid,branch):
@@ -44,7 +45,7 @@ class result:
                     if ex == self.clg_id or ex == self.name:
                         self.letter = row
                         break
-                    
+
             if self.letter == 'a':
                 print('Either you are LE, wrna bahut galat input maara tune')
                 break
@@ -58,7 +59,7 @@ class result:
                     if tem == 'result':
                         column -= 1
                         row += 2
-                        x.field_names = ["sem", "total marks", "percentage"]
+                        x.field_names = ["Sem", "Marks", "Percentage"]
                         self.yval.append(self.currentSheet.cell(self.letter, column).value / self.currentSheet.cell(row,
                                                                                                           column).value * 100)
                         self.xval.append(self.sem)
@@ -75,7 +76,7 @@ class result:
         elif v == 'y':
             return self.yval
         elif v == 't':
-            return x.get_html_string()
+            return x.get_html_string(attributes={"name":"restable", "class":"table table-striped table-bordered table-hover"})
         elif v == 'check':
             return self.letter
             
