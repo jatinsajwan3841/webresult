@@ -44,7 +44,8 @@
             <option>ME</option>
             <option>BT</option>
           </select>
-          <div style="color:#FF0000"; id="err"></div>
+          <div id="err" role="alert">
+          </div>
         </div>
         
         
@@ -58,7 +59,9 @@
         function validateForm() {
           var x = document.getElementById("branch").value;
           if (x == "Choose..."){
-            document.getElementById('err').innerHTML = "Please choose correct branch!";
+            var y = document.getElementById('err')
+            y.className += "alert alert-danger mt-2";
+            y.innerHTML="Please choose correct branch!";
             return false;
           }          
         }
