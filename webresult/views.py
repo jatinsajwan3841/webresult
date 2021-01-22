@@ -18,7 +18,7 @@ def about(request):
     s.select(3)
     s.select(4)
     if s.display('check') == 'a':
-        params = {'f' : '''<p style="color:red";>The entered data didn't matched, please try again</p>'''}
+        params = {'f' : '''<div class="alert alert-danger" role="alert">The entered data didn't matched, please try again</div>'''}
         return render(request, 'index.html', params)
     else:
         args = {'table' : s.display('t'), 'name' : name, 'sems' : s.display('x'), 'perc' : s.display('y')}
