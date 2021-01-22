@@ -16,6 +16,7 @@ def about(request):
     s.select(1)
     s.select(2)
     s.select(3)
+    s.select(4)
     if s.display('check') == 'a':
         params = {'f' : '''<p style="color:red";>The entered data didn't matched, please try again</p>'''}
         return render(request, 'index.html', params)
