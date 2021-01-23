@@ -7,12 +7,10 @@ x.format = True
 
 
 class result:
-    def __init__(self, name, clgid, branch):
+    def __init__(self, name, branch):
         self.wb = Workbook()
         self.sheet = self.wb.active
         self.name = name
-        self.name = name.lower()
-        self.clg_id = int(clgid)
         self.branch = branch
         self.xval = []
         self.yval = []
@@ -43,14 +41,14 @@ class result:
                 self.currentSheet = self.semn[self.branch]
             
 
-            for row in range(1, self.currentSheet.max_row + 1):  # searching name or ID
+            for row in range(1, self.currentSheet.max_row + 1):  # searching name
                 for column in "DE":
                     self.cell_name = "{}{}".format(column, row)
                     ex = self.currentSheet[self.cell_name].value
-                    if ex != None and type(ex) != int:
+                    if type(ex) == str:
                         ex = ex.strip()
                         ex = ex.lower()
-                    if ex == self.clg_id or ex == self.name:
+                    if ex == self.name :
                         self.letter = row
                         break
 
@@ -89,8 +87,7 @@ class result:
         elif v == 'y':
             return self.yval
         elif v == 't':
-            x.add_row(["Total :", "{}/{}".format(self.total_marks[0], self.total_marks[1]),
-                       "{} %".format((self.total_marks[0]/self.total_marks[1])*100)])
+            x.add_row(["Total :", "{}/{}".format(self.total_marks[0], self.total_marks[1]),"{} %".format((self.total_marks[0]/self.total_marks[1])*100)])
             return x.get_html_string(attributes={"name": "restable", "class": "table table-striped table-bordered table-hover"})
         elif v == 'check':
             return self.letter
