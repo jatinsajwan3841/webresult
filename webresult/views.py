@@ -4,15 +4,18 @@ from django.shortcuts import render
 
 
 def index(request):
-    params = {'f': '<p>this is my first django project</p>'}
-    return render(request, 'index.html', params)
+    return render(request, 'index.html')
 
 def about(request):
     from sup import result
     name=request.GET.get('name')
-    clgid=request.GET.get('clgid')
+    name = name.lower()
     branch=request.GET.get('branch')
-    s = result(name,clgid,branch)
+    try:
+        name = int(name)
+    except :
+        pass
+    s = result(name,branch)
     s.select(1)
     s.select(2)
     s.select(3)
