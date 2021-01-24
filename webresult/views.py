@@ -9,12 +9,11 @@ def index(request):
 def about(request):
     from sup import result
     name=request.GET.get('name')
-    name = name.lower()
     branch=request.GET.get('branch')
     try:
         name = int(name)
     except :
-        pass
+        name = name.lower()
     s = result(name,branch)
     s.select(1)
     s.select(2)
