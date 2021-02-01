@@ -59,6 +59,7 @@ class result:
                     if tem == 'result':
                         column -= 1
                         row += 2
+                        self.sem += 1
                         x.field_names = ["Sem", "Marks", "Percentage"]
                         self.yval.append(self.currentSheet.cell(self.letter, column).value / self.currentSheet.cell(row,
                                                                                                                     column).value * 100)
