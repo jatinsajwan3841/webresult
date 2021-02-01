@@ -1,5 +1,4 @@
 from openpyxl import load_workbook
-from openpyxl import Workbook
 from prettytable import PrettyTable
 
 x = PrettyTable()
@@ -8,11 +7,9 @@ x.format = True
 
 class result:
     def __init__(self, name, branch):
-        self.wb = Workbook()
-        self.sheet = self.wb.active
         self.name = name
         self.branch = branch
-        self.excelfiles = ['dat/B. TECH. I SEM DEC 18.xlsx', 'dat/B. TECH. II SEM JUNE 2019.xlsx',
+        self.excelfiles = ['dat/B. TECH. I SEM DEC 18.xlsx', 'dat//B. TECH. II SEM JUNE 2019.xlsx',
                            'dat/B. TECH. III SEM DECEMBER 2019.xlsx', 'dat/B. TECH. IV SEM DECEMBER 2020.xlsx']
         self.xval = []
         self.yval = []
