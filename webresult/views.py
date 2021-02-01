@@ -15,10 +15,6 @@ def about(request):
     except :
         name = name.lower()
     s = result(name,branch)
-    s.select(1)
-    s.select(2)
-    s.select(3)
-    s.select(4)
     if s.display('check') == 'a':
         params = {'f' : '''<div class="alert alert-danger" role="alert">The entered data didn't matched, please try again</div>'''}
         return render(request, 'index.html', params)
