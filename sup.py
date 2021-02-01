@@ -41,7 +41,18 @@ class result:
                 self.currentSheet = self.semn[self.branch]
             
 
-            for row in range(1, self.currentSheet.max_row + 1):  # searching name
+            self.search()
+
+            if self.letter == 'a':
+                print('Either you are LE, wrna bahut galat input maara tune')
+                break
+
+            self.vals()
+            
+            break
+
+    def search(self):
+        for row in range(7, self.currentSheet.max_row + 1):  # searching name
                 for column in "DE":
                     self.cell_name = "{}{}".format(column, row)
                     ex = self.currentSheet[self.cell_name].value
@@ -50,13 +61,10 @@ class result:
                         ex = ex.lower()
                     if ex == self.name :
                         self.letter = row
-                        break
+                        return 0
 
-            if self.letter == 'a':
-                print('Either you are LE, wrna bahut galat input maara tune')
-                break
-
-            for row in range(4, 5):  # saving values for table and plot
+    def vals(self):
+        for row in range(4, 5):  # saving values for table and plot
                 for column in range(1, self.currentSheet.max_column + 1):
                     tem = self.currentSheet.cell(row, column).value
                     if type(tem) == str:
@@ -78,8 +86,8 @@ class result:
                                     self.letter, column).value
                             self.total_marks[1] = self.total_marks[1] + \
                                 self.currentSheet.cell(row, column).value
-                            break
-            break
+                            return 0
+
 
     def display(self, v):
         if v == 'x':
