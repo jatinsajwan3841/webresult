@@ -28,7 +28,7 @@ class result:
             self.currentSheet = self.semn[self.branch]
 
             self.search()
-            
+
             if self.letter == 'a':
                 print('data not matching')
                 if self.sem == 2:
@@ -64,10 +64,8 @@ class result:
                         self.yval.append(self.currentSheet.cell(self.letter, column).value / self.currentSheet.cell(row,
                                                                                                                     column).value * 100)
                         self.xval.append(self.sem)
-                        x.add_row([self.sem, "{}/{}".format(self.currentSheet.cell(self.letter, column).value,
-                                                            self.currentSheet.cell(row, column).value), "{} %".format(
-                            self.currentSheet.cell(self.letter, column).value / self.currentSheet.cell(row,
-                                                                                                       column).value * 100)])
+                        x.add_row([self.sem, "{}/{}".format(self.currentSheet.cell(self.letter, column).value, self.currentSheet.cell(row, column).value),
+                                   "{} %".format(round(self.currentSheet.cell(self.letter, column).value / self.currentSheet.cell(row, column).value * 100, 4))])
                         self.total_marks[0] = self.total_marks[0] + \
                             self.currentSheet.cell(
                                 self.letter, column).value
@@ -84,7 +82,7 @@ class result:
             return self.yval
         elif v == 't':
             x.add_row(["Total :", "{}/{}".format(self.total_marks[0], self.total_marks[1]),
-                       "{} %".format((self.total_marks[0]/self.total_marks[1])*100)])
+                       "{} %".format(round(self.total_marks[0]/self.total_marks[1] * 100, 4))])
             return x.get_html_string(attributes={"name": "restable", "class": "table table-striped table-bordered table-hover"})
 
     def clear(self):
