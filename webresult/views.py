@@ -2,7 +2,6 @@
 
 from django.shortcuts import render
 
-
 def index(request):
     return render(request, 'index.html')
 
@@ -13,7 +12,10 @@ def about(request):
     try:
         name = int(name)
     except :
-        name = name.lower()
+        try:
+            name = name.lower()
+        except:
+            return render(request, 'index.html')
     s = result(name,branch)
     if s.display('check') == 'a':
         params = {'f' : '''<div class="alert alert-danger" role="alert">The entered data didn't matched, please try again</div>'''}
