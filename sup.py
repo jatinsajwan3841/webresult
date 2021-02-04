@@ -47,25 +47,25 @@ class result:
                     return 0
 
     def vals(self):                          # saving values for table and plot
-        for row in range(4, 5):
-            for column in range(1, self.cS.max_column + 1):
-                tem = self.cS.cell(row, column).value
-                if type(tem) == str:
-                    tem = tem.strip()
-                    tem = tem.lower()
-                    if tem == 'result':
-                        column -= 1
-                        row += 2
-                        self.sem += 1
-                        x.field_names = ["Sem", "Marks", "Percentage"]
-                        self.yval.append(self.cS.cell(self.letter, column).value / self.cS.cell(row,
-                                                                                                column).value * 100)
-                        self.xval.append(self.sem)
-                        x.add_row([self.sem, "{}/{}".format(self.cS.cell(self.letter, column).value, self.cS.cell(row, column).value),
-                                   "{} %".format(round(self.cS.cell(self.letter, column).value / self.cS.cell(row, column).value * 100, 4))])
-                        self.total_marks[0] = self.total_marks[0] + self.cS.cell(self.letter, column).value
-                        self.total_marks[1] = self.total_marks[1] + self.cS.cell(row, column).value
-                        return 0
+        row = 4
+        for column in range(1, self.cS.max_column + 1):
+            tem = self.cS.cell(row, column).value
+            if type(tem) == str:
+                tem = tem.strip()
+                tem = tem.lower()
+                if tem == 'result':
+                    column -= 1
+                    row += 2
+                    self.sem += 1
+                    x.field_names = ["Sem", "Marks", "Percentage"]
+                    self.yval.append(self.cS.cell(self.letter, column).value / self.cS.cell(row,
+                                                                                            column).value * 100)
+                    self.xval.append(self.sem)
+                    x.add_row([self.sem, "{}/{}".format(self.cS.cell(self.letter, column).value, self.cS.cell(row, column).value),
+                                "{} %".format(round(self.cS.cell(self.letter, column).value / self.cS.cell(row, column).value * 100, 4))])
+                    self.total_marks[0] = self.total_marks[0] + self.cS.cell(self.letter, column).value
+                    self.total_marks[1] = self.total_marks[1] + self.cS.cell(row, column).value
+                    return 0
 
     def display(self, v):
         if v == 'check':
