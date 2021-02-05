@@ -1,7 +1,7 @@
 # views file, let's see
 from django.shortcuts import render
 from sup import result
-from datetime import datetime
+
 
 
 def index(request):
@@ -9,7 +9,7 @@ def index(request):
 
 
 def about(request):
-
+    from datetime import datetime
     start = datetime.now()
 
     name = request.GET.get('name')
