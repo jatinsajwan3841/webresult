@@ -7,7 +7,6 @@
   This is a Django based project where anyone from the batch 2018-22 can have a quick reference of their performance
    in different semesters by a table indicating minimal necessary things and a graph.
 </p>
-
 <div role="alert" class="alert alert-success mt-2">
   <strong> * Please choose your branch and fill accordingly the next field.</strong>
 
@@ -32,7 +31,7 @@
     </div>
 
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" id="sbmt">Submit</button>
     </div>
   </form>
 </div>
@@ -48,7 +47,12 @@
       y.className += "alert alert-danger mt-2";
       y.innerHTML="Please choose correct branch!";
       return false;
-    }          
+    }     
+    else{
+      var bt = document.getElementById("sbmt");
+      bt.setAttribute("disabled",true);
+      bt.innerText = "loading...";
+    }     
   }
   function nid(){
     if ( document.getElementById("branch").value == "CE"){
