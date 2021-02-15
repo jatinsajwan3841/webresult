@@ -1,19 +1,13 @@
 from openpyxl import load_workbook
-from prettytable import PrettyTable
-
-x = PrettyTable()
-x.format = True
-
 
 class result:
     def __init__(self, name, branch):
         self.name = name
         self.branch = branch
-        self.excelfiles = ['dat/B. TECH. I SEM DEC 18.xlsx', 'dat/B. TECH. II SEM JUNE 2019.xlsx',
-                           'dat/B. TECH. III SEM DECEMBER 2019.xlsx', 'dat/B. TECH. IV SEM DECEMBER 2020.xlsx']
-        self.xval = []
-        self.yval = []
+        self.excelfiles = ['dat\\B. TECH. I SEM DEC 18.xlsx', 'dat\\B. TECH. II SEM JUNE 2019.xlsx',
+                           'dat\\B. TECH. III SEM DECEMBER 2019.xlsx', 'dat\\B. TECH. IV SEM DECEMBER 2020.xlsx']
         self.letter = 'a'
+        self.x = []
         self.total_marks = [0, 0]
         self.select()
 
@@ -57,12 +51,8 @@ class result:
                     column -= 1
                     row += 2
                     self.sem += 1
-                    x.field_names = ["Sem", "Marks", "Percentage"]
-                    self.yval.append(self.cS.cell(self.letter, column).value / self.cS.cell(row,
-                                                                                            column).value * 100)
-                    self.xval.append(self.sem)
-                    x.add_row([self.sem, "{}/{}".format(self.cS.cell(self.letter, column).value, self.cS.cell(row, column).value),
-                                "{} %".format(round(self.cS.cell(self.letter, column).value / self.cS.cell(row, column).value * 100, 4))])
+                    self.x.append([self.sem, "{}/{}".format(self.cS.cell(self.letter, column).value, self.cS.cell(row, column).value),
+                                round(self.cS.cell(self.letter, column).value / self.cS.cell(row, column).value * 100, 4)])
                     self.total_marks[0] = self.total_marks[0] + self.cS.cell(self.letter, column).value
                     self.total_marks[1] = self.total_marks[1] + self.cS.cell(row, column).value
                     return 0
@@ -70,16 +60,10 @@ class result:
     def display(self, v):
         if v == 'check':
             return self.letter
-        elif v == 'x':
-            return self.xval
-        elif v == 'y':
-            return self.yval
         elif v == 't':
-            x.add_row(["Total :", "{}/{}".format(self.total_marks[0], self.total_marks[1]),
-                       "{} %".format(round(self.total_marks[0]/self.total_marks[1] * 100, 4))])
-            return x.get_html_string(attributes={"name": "restable", "class": "table table-striped table-bordered table-hover"})
+            self.x.append(["Total:", "{}/{}".format(self.total_marks[0], self.total_marks[1]),
+                       round(self.total_marks[0]/self.total_marks[1] * 100, 4)])
+            return self.x
 
     def clear(self):
-        x.clear()
-        self.xval.clear
-        self.yval.clear
+        self.x.clear
