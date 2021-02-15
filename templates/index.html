@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3 ><strong>Hello</strong></h3>
+<h3 ><strong>Hello <span id="naam"></span></strong></h3>
 {{f|safe}}
 <p> 
   This is a Django based project where anyone from the batch 2018-22 can have a quick reference of their performance
@@ -56,10 +56,13 @@
   }
   function nid(){
     if ( document.getElementById("branch").value == "CE"){
-      document.getElementById("nid").innerHTML='<label for="name" class="form-label">College ID</label><input type="number" class="form-control" name="name" id="name" minlength="180000" maxlength="999999" placeholder="college id" required>';
+      document.getElementById("nid").innerHTML='<label for="name" class="form-label">College ID</label><input type="number" class="form-control" name="name" id="name" minlength="180000" maxlength="999999" placeholder="college id" required oninput="naam()">';
     }else{
-      document.getElementById("nid").innerHTML='<label for="name" class="form-label">Name</label><input type="text" class="form-control" name="name" id="name" minlength="3" maxlength="40" placeholder="full name please" required>';
+      document.getElementById("nid").innerHTML='<label for="name" class="form-label">Name</label><input type="text" class="form-control" name="name" id="name" minlength="3" maxlength="40" placeholder="full name please" required oninput="naam()">';
     }
+  }
+  function naam(){
+    document.getElementById("naam").innerText = document.getElementById("name").value
   }
   </script>
 
