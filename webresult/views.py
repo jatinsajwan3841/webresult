@@ -1,12 +1,12 @@
-# views file, let's see
-
-from django.shortcuts import render
+from django.shortcuts import HttpResponse, redirect
+import json
 
 def index(request):
-    return render(request, 'index.html')
+    return redirect('https://jatinsajwan3841.github.io/webresult_django/')
 
 def about(request):
     from sup import result
+    err = json.dumps("nf")
     name=request.GET.get('name')
     branch=request.GET.get('branch')
     try:
@@ -15,13 +15,12 @@ def about(request):
         try:
             name = name.lower()
         except:
-            return render(request, 'index.html')
+            return HttpResponse(err)
     s = result(name,branch)
     if s.display('check') == 'a':
-        params = {'f' : '''<div class="alert alert-danger" role="alert">The entered data didn't matched, please try again</div>'''}
-        return render(request, 'index.html', params)
+        return HttpResponse(err)
     else:
-        args = {'table' : s.display('t'), 'name' : name, 'sems' : s.display('x'), 'perc' : s.display('y')}
+        args =  s.display('t')
         s.clear()
-        return render(request, 'output.html',args)
-    
+        data = json.dumps(args)
+        return HttpResponse(data)
