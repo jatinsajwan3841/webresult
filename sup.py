@@ -4,8 +4,8 @@ class result:
     def __init__(self, name, branch):
         self.name = name
         self.branch = branch
-        self.excelfiles = ['dat\\B. TECH. I SEM DEC 18.xlsx', 'dat\\B. TECH. II SEM JUNE 2019.xlsx',
-                           'dat\\B. TECH. III SEM DECEMBER 2019.xlsx', 'dat\\B. TECH. IV SEM DECEMBER 2020.xlsx']
+        self.excelfiles = ['dat/B. TECH. I SEM DEC 18.xlsx', 'dat/B. TECH. II SEM JUNE 2019.xlsx',
+                           'dat/B. TECH. III SEM DECEMBER 2019.xlsx', 'dat/B. TECH. IV SEM DECEMBER 2020.xlsx']
         self.letter = 'a'
         self.x = []
         self.total_marks = [0, 0]
