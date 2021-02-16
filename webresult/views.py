@@ -2,7 +2,7 @@ from django.shortcuts import HttpResponse, redirect
 import json
 
 def index(request):
-    return redirect('https://jatinsajwan3841.github.io/webresult_django/')
+    return redirect('https://jatinsajwan3841.github.io/webresult/')
 
 def about(request):
     from sup import result
