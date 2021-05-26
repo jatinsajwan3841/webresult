@@ -13,8 +13,7 @@ import LineGraph from "./lchart";
 
 export default function About(props) {
 
-    const vals = props.data;
-    const json = vals.map(function(x) {
+    const json = props.data.map(function(x) {
       return {    
           "sem": x[0],
           "marks": x[1],
@@ -26,29 +25,29 @@ export default function About(props) {
       <Container maxWidth="md">
           <Button variant="contained" color="primary" startIcon={<HomeIcon/>} href="/webresult/">Home</Button>
           <h2 style={{marginTop:6}}> Hello {props.name}</h2>
-    <TableContainer component={Container}>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center"><b>Sem</b></TableCell>
-            <TableCell align="center"><b>Marks</b></TableCell>
-            <TableCell align="center"><b>Percentage</b></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {json.map((row) => (
-            <TableRow key={row.sem}>
-              <TableCell component="th" scope="row" align="center">
-                {row.sem}
-              </TableCell>
-              <TableCell align="center">{row.marks}</TableCell>
-              <TableCell align="center">{row.percentage}%</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    <LineGraph data={json}/>
+            <TableContainer component={Container}>
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center"><b>Sem</b></TableCell>
+                    <TableCell align="center"><b>Marks</b></TableCell>
+                    <TableCell align="center"><b>Percentage</b></TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {json.map((row) => (
+                    <TableRow key={row.sem}>
+                      <TableCell component="th" scope="row" align="center">
+                        {row.sem}
+                      </TableCell>
+                      <TableCell align="center">{row.marks}</TableCell>
+                      <TableCell align="center">{row.percentage}%</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          <LineGraph data={json}/>
     </Container>
   );
 }
