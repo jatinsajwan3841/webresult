@@ -76,7 +76,7 @@ export default function App() {
     };
 
     const Response = () =>{
-      let url = 'https://result1822.herokuapp.com/about?name=' + name + '&branch=' + branch;
+      let url = 'https://result18-22.herokuapp.com/about?name=' + name + '&branch=' + branch;
             fetch(url)
             .then(response => response.json())
             .then(data => setresponse(data));
