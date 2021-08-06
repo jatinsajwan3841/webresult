@@ -6,4 +6,4 @@ The Django code in main branch is deployed to heroku using gunicorn python WSGI 
 The react_front directory holds the Reactjs code and gh-pages branch hold its build release in production.  
 The main_old branch is without the use of Reactjs, using the default template engine of django.  
   
-Deployment available at https://result1822.herokuapp.com/ , watch and rate it yourself.
+Deployment available at https://result18-22.herokuapp.com/ , watch and rate it yourself.
